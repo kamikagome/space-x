@@ -24,5 +24,5 @@ SELECT
     s.mission_name,
     CAST(strftime(s.launch_date, '%Y%m%d') AS INTEGER) AS date_key,
     s.rocket_id,
-    CAST(COALESCE(s.launch_success, FALSE) AS INTEGER) AS success_flag
+    CAST(s.launch_success AS INTEGER) AS success_flag
 FROM stg_launches s;

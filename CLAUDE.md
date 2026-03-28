@@ -38,6 +38,7 @@ The data pipeline follows three layers:
 ```bash
 duckdb spacex_modelling.duckdb < fetch_launches.sql
 duckdb spacex_modelling.duckdb < create_tables.sql
+duckdb spacex_modelling.duckdb < scd2.sql
 duckdb spacex_modelling.duckdb < sanity_checks.sql
 ```
 
@@ -56,7 +57,7 @@ duckdb spacex_modelling.duckdb
 
 ## Important Notes
 
-- **Database:** This project uses **DuckDB** (not PostgreSQL/Snowflake/BigQuery as the README header suggests)
+- **Database:** This project uses **DuckDB** exclusively.
 - **Data Volume:** The staging table is limited to 20 recent launches for development/demo purposes. Remove `LIMIT 20` in `fetch_launches.sql` for full dataset
 - **API Dependency:** `fetch_launches.sql` requires network access to the SpaceX public API (community-maintained, may change)
 - **ETag Handling:** `unsafe_disable_etag_checks = true` is set to handle remote JSON caching issues

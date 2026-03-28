@@ -54,9 +54,9 @@ erDiagram
         boolean is_current
     }
 
-    fct_launches }o--|| dim_date : "date_key"
+    dim_date ||--o{ fct_launches : "date_key"
     fct_launches }o--|| dim_rocket : "rocket_id"
-    dim_rocket ||--o{ dim_rocket_scd2 : "rocket_id (versioned)"
+    dim_rocket ||--o{ dim_rocket_scd2 : "version history"
 ```
 
 **Fact Table:**
@@ -91,6 +91,7 @@ erDiagram
 # Run full pipeline
 duckdb spacex_modelling.duckdb < fetch_launches.sql
 duckdb spacex_modelling.duckdb < create_tables.sql
+duckdb spacex_modelling.duckdb < scd2.sql
 duckdb spacex_modelling.duckdb < sanity_checks.sql
 
 # Query the database

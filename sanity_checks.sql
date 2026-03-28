@@ -8,8 +8,9 @@ ORDER BY 1, 2;
 -- Success rate by rocket name
 SELECT r.rocket_name,
        SUM(f.success_flag) AS successes,
-       COUNT(*) AS launches
+       COUNT(f.success_flag) AS known_outcomes,
+       COUNT(*) AS total_launches
 FROM fct_launches f
 JOIN dim_rocket r ON f.rocket_id = r.rocket_id
 GROUP BY 1
-ORDER BY launches DESC;
+ORDER BY total_launches DESC;
